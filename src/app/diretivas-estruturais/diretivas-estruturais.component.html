@@ -1,6 +1,7 @@
 <h1>
     NgInf
-</h1><p *ngIf="condition; else elseBlock">True</p>
+</h1>
+<p *ngIf="condition; else elseBlock">True</p>
 <ng-template #elseBlock>
     <p>
         False
@@ -10,6 +11,15 @@
 <!-- O código abaixo mudará o valor acima em true e false-->
 <p *ngIf="conditionClick">True</p>
 <p *ngIf="!conditionClick">False</p>
-<button (click)="onClick()">
-    Clicar
-</button>
+<button (click)="onClick()">Clicar</button>
+<hr>
+<h1>
+    NgFor
+</h1>
+<ul>
+    <li *ngFor="let item of list; let i=index;" (click)="onClickEventList(i)">
+        [{{i}}] - {{item.nome}} - idade: {{item.idade}}
+    </li>
+</ul>
+
+<button (click)="onClickAddList()">Add</button>
