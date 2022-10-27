@@ -1,1 +1,66 @@
-<p>forms works!</p>
+<form #form="ngForm" (ngSubmit)="submitForm(form)">
+    <label>
+        Nome:
+        <input type="text" name="nome" #nome="ngModel" [ngModel]="nome.value" required>
+    <span *ngIf="!nome.valid && (nome.dirty && nome.touched)">
+        Invalid
+    </span>
+    </label>  
+    <br>
+    <br>
+    {{nome.valid}}
+    {{nome.dirty}}
+    {{nome.touched}}
+    <br>
+    <br>
+    <label>
+        Masculino:
+        <input type="radio" name="sexo" value="Masculino" ngModel>
+    </label>  
+    <label>
+        Feminino:
+        <input type="radio" name="sexo" value="Feminino" ngModel>
+    </label>  
+    <label>
+        Outros:
+        <input type="radio" name="sexo" value="Outros" ngModel>
+    </label>  
+    <br>
+    <br>
+    <label>
+        Angular:
+        <input type="checkbox" name="angular" ngModel>
+    </label> 
+    <label>
+        Vue:
+        <input type="checkbox" name="vue" ngModel>
+    </label>  
+    <label>
+        React:
+        <input type="checkbox" name="react" ngModel>
+    </label>  
+    <br>
+    <br>
+    <select name="veiculos" ngModel>
+        <option value="">Selecione um carro</option>
+        <option value="Carro 1">Carro 1</option>
+        <option value="Carro 2">Carro 2</option>
+        <option value="Carro 3">Carro 3</option>
+    </select>
+    <br>
+    <br>
+    <select name="carros" ngModel>
+        <option value="">Qual carro você prefere?</option>
+        <option *ngFor="let item of listaCarros" [value]="item.carro">
+            {{item.carro}}
+        </option>
+        <!-- se em value fosse apenas item: seria mostrado o objeto inteiro
+        [ngValue]="item"-->
+    </select>
+    <br><br>
+    <button [disabled]="form.invalid" >
+        Enviar dados
+    </button>
+</form>
+<br>
+{{form.value | json}}
